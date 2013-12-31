@@ -1,0 +1,13 @@
+--- drivers/video/msm/vidc/common/dec/vdec.c
++++ drivers/video/msm/vidc/common/dec/vdec.c
+@@ -2865,8 +2865,8 @@
+ 			goto error_vid_dec_cdev_add;
+ 		}
+ 	}
+-	vid_dec_vcd_init();
+-	return 0;
++	rc = vid_dec_vcd_init();
++	return rc;
+ 
+ error_vid_dec_cdev_add:
+ 	for (j = i-1; j >= 0; j--)
