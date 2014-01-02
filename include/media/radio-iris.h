@@ -487,7 +487,7 @@ struct hci_ev_af_list {
 	__le32   tune_freq;
 	__le16   pi_code;
 	__u8    af_size;
-	__u8    af_list[25];
+	__u8    af_list[FM_AF_LIST_MAX_SIZE];
 } __packed;
 
 struct hci_ev_cmd_complete {
