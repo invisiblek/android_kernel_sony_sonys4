@@ -3,7 +3,7 @@
 //#include <linux/fih_leds.h>
 #include <linux/fih_pwm_lib.h>
 //MTD-SW3-PERIPHERAL-OH-LED_Porting-00*}
-
+#include <linux/development_tool.h>
 #include <linux/mfd/pm8xxx/pm8921-charger.h>//PERI-BJ-Modify_Power_Off_Led_Init-00+
 
 static const char			*select_func[]		= { "GPIO", "MPP", "SYS_GPIO", "LUT" }; //MTD-SW3-PERIPHERAL-OH-LED_Porting-00+
@@ -48,7 +48,9 @@ enum {
 };
 //MTD-SW3-PERIPHERAL-BJ-LED_FADE_IN_OUT_DIFF-00*}
 
+#if 0
 extern bool is_power_off_charging(void);//PERI-BJ-Modify_Power_Off_Led_Init-00+
+#endif
 
 static void	led_on_off_set( struct led_data *data, struct command_parameter *parameter )
 {
@@ -1904,7 +1906,7 @@ static int msm_pmic_led_probe(struct platform_device *pdev)
 
 			case	LED_HW_PMIC_LPG: //MTD-SW3-PERIPHERAL-OH-LED_Porting-00*
 //PERI-BJ-Modify_Power_Off_Led_Init-00*{
-				if(!is_power_off_charging()){
+//				if(!is_power_off_charging()){
 					LED_MSG("Not in power off charging. To set_default_pwm_register");
 
 					//PERI-BJ-Fix_Coverity_Explicit_null_dereferenced-00*{
@@ -1918,7 +1920,7 @@ static int msm_pmic_led_probe(struct platform_device *pdev)
 						set_default_pwm_register(destination->pwm_dev);//PERI-BJ-Set_PWM_register_default-00+
 					}
 					//PERI-BJ-Fix_Coverity_Explicit_null_dereferenced-00*}
-				}
+//				}
 //PERI-BJ-Modify_Power_Off_Led_Init-00*}
 				break;
 		}
@@ -1930,6 +1932,7 @@ static int msm_pmic_led_probe(struct platform_device *pdev)
 			led_on_off_set( destination, &parameter );
 
 //PERI-BJ-Modify_Power_Off_Led_Init-00+{
+#if 0
 			if(is_power_off_charging()){
 				LED_MSG("In power off charging state. To turn on red color");
 
@@ -1942,6 +1945,7 @@ static int msm_pmic_led_probe(struct platform_device *pdev)
 					led_on_off_set( destination, &parameter );
 				}
 			}
+#endif
 //PERI-BJ-Modify_Power_Off_Led_Init-00+}
 		}
 

@@ -1870,7 +1870,7 @@ CONFIG_INPUT_SENSOR=y
 #
 # FIH development tool
 #
-# CONFIG_FIH_DEVELOPMENT_TOOL is not set
+CONFIG_FIH_DEVELOPMENT_TOOL=y
 
 #
 # Character devices

@@ -34,11 +34,13 @@ struct flash_work {
 	int    x;
 };
 struct flash_work *work;
-#ifndef CONFIG_LEDS_LM3561
+#ifdef CONFIG_LEDS_LM3561
 static struct timer_list flash_timer;
 static int timer_state;
 static struct workqueue_struct *flash_wq;
 static struct msm_camera_i2c_client i2c_client;
+struct led_classdev *lm3561;
+bool flash_auto;
 #endif
 struct i2c_client *sx150x_client;
 struct timer_list timer_flash;
