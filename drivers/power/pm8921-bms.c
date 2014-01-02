@@ -1683,7 +1683,7 @@ static void calculate_soc_params(struct pm8921_bms_chip *chip,
 					delta_time_s);
 	pr_debug("UUC = %uuAh\n", *unusable_charge_uah);
 }
-
+#if 0
 static int calculate_real_fcc_uah(struct pm8921_bms_chip *chip,
 				struct pm8921_soc_params *raw,
 				int batt_temp, int chargecycles,
@@ -1710,7 +1710,7 @@ static int calculate_real_fcc_uah(struct pm8921_bms_chip *chip,
 			real_fcc_uah, remaining_charge_uah, cc_uah, fcc_uah);
 	return real_fcc_uah;
 }
-
+#endif
 int pm8921_bms_get_simultaneous_battery_voltage_and_current(int *ibat_ua,
 								int *vbat_uv)
 {

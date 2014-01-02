@@ -40,11 +40,6 @@
 
 long system_flag = inactive;
 #include <mach/msm_iomap.h>
-#ifdef CONFIG_CCI_KLOG
-extern long* powerpt;
-extern long* unknowflag;
-extern long* backupcrashflag;
-#endif
 extern void set_warmboot(void);
 extern void *restart_reason;
 #define CONFIG_WARMBOOT_CRASH       0xC0DEDEAD

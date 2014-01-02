@@ -943,7 +943,7 @@ static struct android_usb_function serial_function = {
 	.attributes	= serial_function_attributes,
 };
 
-#if 0/*MTD-CONN-EH-USBPORTING-00-{*/
+#if 1/*MTD-CONN-EH-USBPORTING-00-{*/
 /* ACM */
 static char acm_transports[32];	/*enabled ACM ports - "tty[,sdio]"*/
 static ssize_t acm_transports_store(

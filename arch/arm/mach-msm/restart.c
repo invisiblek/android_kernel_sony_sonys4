@@ -82,11 +82,6 @@ void *lge_error_handler_cookie_addr;
 static int ssr_magic_number = 0;
 #endif
 
-//CORE-DL-FOTA-00 +[
-#define CONFIG_WARMBOOT_FOTA 0x6F656D46
-#define CONFIG_WARMBOOT_S1   0x6F656D53
-//CORE-DL-FOTA-00 +]
-
 //CORE-DL-ADD_SWITCH_FOR_RPM_BACKUP-00 +[
 #ifdef SECURE_RPM_RAM
 #define RPM_MSG_RAM_SRC_PHYS_ADDR 0x00108000

@@ -3715,7 +3715,7 @@ void * get_hw_wd_virt_addr(void);
 
 int ftm_pin_is_low = 0;
 int key_capture_pressed = 0;
-extern int if_board_evt;
+/* extern int if_board_evt; // Seems to be part of the (removed) CCI stuff */
 void fih_parse_power_on_cause (void)
 {
 	unsigned int *pwron_cause_ptr;
@@ -3867,30 +3867,6 @@ EXPORT_SYMBOL(fih_get_power_on_cause);
 module_param_named(poweron_cause, fih_power_on_cause, int, S_IRUGO);
 //MTD-KERNEL-DL-FixCoverity-00 +[
 
-static __init int modem_restart_late_init(void)
-{
-	int i;
-	void *handle;
-	struct restart_notifier_block *nb;
-
-	for (i = 0; i < ARRAY_SIZE(restart_notifiers); i++) {
-		nb = &restart_notifiers[i];
-		handle = subsys_notif_register_notifier(nb->name, &nb->nb);
-		SMD_DBG("%s: registering notif for '%s', handle=%p\n",
-				__func__, nb->name, handle);
-	}
-	return 0;
-}
-late_initcall(modem_restart_late_init);
-
-static struct platform_driver msm_smd_driver = {
-	.probe = msm_smd_probe,
-	.driver = {
-		.name = MODULE_NAME,
-		.owner = THIS_MODULE,
-	},
-};
-
 EXPORT_SYMBOL(ftm_pin_is_low);
 EXPORT_SYMBOL(key_capture_pressed);
 
@@ -3948,10 +3924,11 @@ int __init msm_smd_init(void)
 		}
 		gpio_free(GPIO_BOARD_TYPE_3);	
 
+		/* Seems to be part of the (removed) CCI stuff
 		if(((TMP_HW_ID >> 4) & 0xF) == 0x0)		
 		{
 			if_board_evt = 1;
-		}
+		}*/
                 // Luke
 		ret = gpio_request(GPIO_MODEL_TYPE_1, "gpio_model_type1");
 		if (ret)

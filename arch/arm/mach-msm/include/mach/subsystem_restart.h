@@ -27,6 +27,78 @@ enum {
 	RESET_LEVEL_MAX
 };
 
+enum poweronvalue
+{
+	pmic_inactive = 0,
+	pmic_keypad,
+	pmic_rtc,
+	pmic_cable,
+	pmic_smpl,
+	pmic_wdog,
+	pmic_usbchg,
+	pmic_wallchg,
+	pmic_hotkeyreset,		
+	pmic_unknown,
+	pmic_max,
+};
+
+enum pwroffvalue
+{
+	inactive = 0,
+	hotwarereset,
+	rpmdogbite,
+	acpudogbite,	
+	kernelpanic,	
+	modemfatal,
+	lpassfatal,
+	rivafatal,
+	q6fatal,
+	gssfatal,
+	exmodemfatal,
+	dspsfatal,
+	normalreboot,	
+	normalreboot_bootloader,	
+	normalreboot_oem,	
+	normalreboot_recovery,	
+	normalreboot_fastboot,	
+	adloadmode,	
+	mdloadmode,	
+	pmicwdog,	
+	coldboot,
+	lowbattery,
+	overheat,
+	poweroff,
+	unknown,
+	pwroffvaluemax,
+};
+
+typedef struct
+{
+	unsigned char	pwronindex;
+	unsigned char	pwronrecord[0xA];
+	unsigned short	pwronrecordcount[pmic_max];
+	unsigned char	pwroffindex;
+	unsigned char	pwroffrecord[0xA];
+	unsigned short	pwroffrecordcount[pwroffvaluemax];
+	bool	PM_WDT;
+	unsigned int	RPM_WDT;
+	unsigned int	MSMRST_STAT;
+	unsigned int	ACPU0_WDT;
+	unsigned int	ACPU1_WDT;
+	unsigned int	PM_PWRON;
+	unsigned int	FIQ_ADDR;
+	unsigned int	REST_REASON;
+	unsigned int	CUR_DDRVALUE;
+	unsigned int	CUR_IMEMVALUE;
+}cci_pwrrecord;
+
+typedef struct
+{
+	cci_pwrrecord szpwrd;
+	unsigned char	reserved[0x200-sizeof(cci_pwrrecord)-sizeof(unsigned int)];
+	unsigned int	SIGN;
+}cci_rsvrecord;
+
 struct subsys_desc {
 	const char *name;
 

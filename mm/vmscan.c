@@ -2568,7 +2568,7 @@ static void age_active_anon(struct zone *zone, struct scan_control *sc,
 		memcg = mem_cgroup_iter(NULL, memcg, NULL);
 	} while (memcg);
 }
-
+#if 0 /* Function apparently unused */
 static bool zone_balanced(struct zone *zone, int order,
 			  unsigned long balance_gap, int classzone_idx)
 {
@@ -2581,7 +2581,7 @@ static bool zone_balanced(struct zone *zone, int order,
 
 	return true;
 }
-
+#endif
 /*
  * pgdat_balanced is used when checking if a node is balanced for high-order
  * allocations. Only zones that meet watermarks and are in a zone allowed

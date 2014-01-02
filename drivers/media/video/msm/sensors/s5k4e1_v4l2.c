@@ -426,6 +426,11 @@ int32_t s5k4e1_sensor_i2c_probe(struct i2c_client *client,
 	return rc;
 }
 
+static const struct i2c_device_id s5k4e1_i2c_id[] = {
+	{SENSOR_NAME, (kernel_ulong_t)&s5k4e1_s_ctrl},
+	{ }
+};
+#if 0
 /* MM-UW-Improve camera open performance-00+{ */
 //MM-MC-ImplementReadOtpDataFeature-00+{
 int32_t S5k4e1_match_id(struct msm_sensor_ctrl_t *s_ctrl)
@@ -491,12 +496,7 @@ int32_t S5k4e1_match_id(struct msm_sensor_ctrl_t *s_ctrl)
     
 	return rc;
 }
-
-static const struct i2c_device_id s5k4e1_i2c_id[] = {
-	{SENSOR_NAME, (kernel_ulong_t)&s5k4e1_s_ctrl},
-	{ }
-};
-
+#endif
 static struct i2c_driver s5k4e1_i2c_driver = {
 	.id_table = s5k4e1_i2c_id,
 	.probe  = s5k4e1_sensor_i2c_probe,

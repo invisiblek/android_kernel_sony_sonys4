@@ -158,12 +158,6 @@ static int __init android_power_init(void)
 {
 	int ret;
 
-	if (is_power_off_charging()) {
-
-		pr_err("in power off charging don't init\n");
-		return 0;
-	}
-
 	init_waitqueue_head(&fb_state_wq);
 	fb_state = FB_STATE_DRAWING_OK;
 

@@ -28,7 +28,7 @@
 #include "msm_camera_i2c.h"
 #include "sensors/msm_sensor.h"//2012/11/06
 
-#ifndef CONFIG_MSM_CAMERA_FLASH_LM3642
+//#ifndef CONFIG_MSM_CAMERA_FLASH_LM3642
 struct flash_work {
 	struct work_struct my_work;
 	int    x;
@@ -642,7 +642,7 @@ void flash_timer_callback(unsigned long data)
 	queue_work(flash_wq, (struct work_struct *)work );
 	mod_timer(&flash_timer, jiffies + msecs_to_jiffies(10000));
 }
-#endif
+
 int msm_camera_flash_external(
 	struct msm_camera_sensor_flash_external *external,
 	unsigned led_state)
@@ -879,8 +879,8 @@ error:
 	}
 	return rc;
 }
-
 #endif
+//#endif
 //FIH-SW-MM-MC-BringUpLM3642ForCameraFlashLed-00+}
 
 static int msm_camera_flash_pwm(
